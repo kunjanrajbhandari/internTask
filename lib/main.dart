@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_task/view/login_signup/login.dart';
+import 'package:intern_task/controller/product.dart';
 import 'package:intern_task/view/main_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'controller/provider/add_to_cart.dart';
 
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -14,14 +17,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProductDetails>(
+          create: (BuildContext context) {
+            return ProductDetails();
+          },
+        ),
+        ChangeNotifierProvider<AddToCart>(
+          create: (BuildContext context) {
+            return AddToCart();
+          },
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MainScreen(),
       ),
-      home: const Login(),
     );
+      
+    
   }
 }
+    

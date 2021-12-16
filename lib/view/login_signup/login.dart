@@ -94,7 +94,6 @@ class _LoginState extends State<Login> {
                            padding: EdgeInsets.all(15),
                            textStyle: TextStyle(
                              fontSize:18.0, 
-                             fontFamily: 'Brand Bold', 
                            )
                          ),
                          onPressed: (){
@@ -107,7 +106,6 @@ class _LoginState extends State<Login> {
                            child: Center(
                              child: Text(
                                "Login", 
-                               style: TextStyle(fontFamily: "Brand Bold"),
                               ),
                            ),
                          )
