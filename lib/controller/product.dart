@@ -20,7 +20,7 @@ class ProductDetails extends ChangeNotifier{
           id: res['data']['product'][i]['id'],
           productName: res['data']['product'][i]['name'],
           imageName: res['data']['product'][i]['image'],
-          price: res['data']['product'][i]['price'],
+          price: 5000.0,
           stock: res['data']['product'][i]['stock'],
           date: res['data']['product'][i]['createDate'],
           category: res['data']['product'][i]['category']

@@ -11,7 +11,7 @@ class SinglePage extends StatefulWidget {
   String? productName;
   int? stock;
   String? imageName;
-  String? price;
+  double? price;
   int? createdDate;
 
    SinglePage({ Key? key, required this.id,required this.imageName, required this.stock, required this.price, required this.productName, required this.createdDate}) : super(key: key);
@@ -32,7 +32,7 @@ class _SinglePageState extends State<SinglePage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          CustomAppBar(),
+          const CustomAppBar(),
           Column(
             children: [
               Container(
@@ -70,9 +70,7 @@ class _SinglePageState extends State<SinglePage> {
                           ),
                           Text("Created at: ${TimeStampConverter().getTimeStamp(widget.createdDate)}", style: TextStyle(color: Colors.black.withOpacity(0.6)),),
                         ],
-                      )
-                      //
-                      //Text("${widget.productName}", style: TextStyle(fontSize: 18.9, fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.9) ),),
+                      ),
                     ],
                   ),
                 ),
@@ -80,6 +78,35 @@ class _SinglePageState extends State<SinglePage> {
               
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(left:61.0, bottom: 32),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Row(
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange,
+                padding: EdgeInsets.all(15),
+                ),
+                onPressed: (){}, child: Container(width:99.0,height: 22,child: Center(child: Text("Buy Now", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),)))
+              ),
+              SizedBox(width: 28.0,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
+                padding: EdgeInsets.all(15),
+                ),
+                onPressed: (){
+                  Provider.of<Cart>(context,listen: false).addCount();
+                 Provider.of<Cart>(context,listen: false).addItem(widget.id!.toString(), widget.productName!, widget.price!, widget.imageName!);
+                }
+                , child: Text("Add to card", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),)
+              )
+            ],
+              ),
+            ),
+          )
         ],
       ),
     );

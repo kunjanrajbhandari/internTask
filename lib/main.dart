@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
             return ProductDetails();
           },
         ),
-        ChangeNotifierProvider<AddToCart>(
+        ChangeNotifierProvider<Cart>(
           create: (BuildContext context) {
-            return AddToCart();
+            return Cart();
           },
         )
       ],

@@ -4,6 +4,8 @@ import 'package:intern_task/controller/unix_to_normal_time.dart';
 import 'package:intern_task/view/widget/product_list.dart';
 import 'package:provider/provider.dart';
 
+import 'cart.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({ Key? key }) : super(key: key);
 
@@ -12,33 +14,46 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  TimeStampConverter times = TimeStampConverter();
-  ProductDetails productDetails = ProductDetails();
-  //final productDetails =Provider.of<ProductDetails>(context).getProductDetails();
+
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
-    productDetails.getProductDetails();
-    setState(() {
-      
-    });
-    print(times.getTimeStamp(1639575285192));
+    super.initState();  
+    Provider.of<ProductDetails>(context, listen: false).getProductDetails();
   }
+  int _currentIndex = 0;
+  final tabs =[
+    ProductList(),CartScreen(), 
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: tabs[_currentIndex],
       //backgroundColor: Colors.blue,
       
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-       child: Padding(
-         padding: const EdgeInsets.only(left:8.0, right: 8.0),
-         child: RefreshIndicator(
-           onRefresh: ()=>  productDetails.getProductDetails(),
-           child: ProductList()
-         ),
-       ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.red,
+        //unselectedItemColor: Colors.white,
+        onTap: (index){          
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+           BottomNavigationBarItem(
+            icon: Icon(Icons.add_box,),
+            label: "Product" ,
+            backgroundColor: Colors.white,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: "Cart" ,
+            backgroundColor: Colors.white,
+          ),
+         
+        ],
+
       ),
     );
   }

@@ -2,7 +2,7 @@ class ProductModel{
   int? id;
   String? productName;
   String? imageName;
-  String? price;
+  double? price;
   int? stock;
   int? date;
   List<dynamic>? category;

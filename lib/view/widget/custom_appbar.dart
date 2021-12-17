@@ -2,10 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:intern_task/controller/provider/add_to_cart.dart';
 import 'package:intern_task/view/cart.dart';
+import 'package:provider/provider.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatefulWidget {
   const CustomAppBar({ Key? key }) : super(key: key);
 
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,13 +29,36 @@ class CustomAppBar extends StatelessWidget {
             children: [
               IconButton(onPressed: (){
                 Navigator.pop(context);
-              }, icon: Icon(Icons.arrow_back_ios, color: Colors.white,)),
+              }, icon: Icon(Icons.arrow_back_ios, color: Colors.black,)),
 
               GestureDetector(
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  MyCart()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  CartScreen()));
                 },
-                child: Image(image: AssetImage("assets/images/cart1.png"), height: 35,),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    const Padding(
+                      padding:  EdgeInsets.only(right:2.0),
+                      child: Image(image: AssetImage("assets/images/cart1.png"), height: 35,),
+                    ),
+                    Consumer<Cart>(
+                      builder: (context,provider, child){
+                        return provider.count !=0?Container(
+                          height: 20,width: 20 ,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(33.0)
+                          ),
+                          child: Center(child: Text("${provider.count}", style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 14.0),))
+                        ):const SizedBox();
+                      }
+                    )
+                     
+                     
+                    //
+                  ],
+                ),
               )
             ],
           ),
