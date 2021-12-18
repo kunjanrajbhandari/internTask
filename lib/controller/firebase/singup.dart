@@ -40,7 +40,10 @@ class SingupRiderWithFirebase{
             'name': name,
             'email': email,
           });
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Login()));
+          if(email!.isNotEmpty&& password!.isNotEmpty){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Login()));
+            
+          }
           //Get.toNamed('/login');
           Fluttertoast.showToast(msg: "successfully created account", backgroundColor:  Colors.green, textColor: Colors.white);
           //Get.snackbar("title", "successfully created account");

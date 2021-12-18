@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:intern_task/model/add_to_cart_model.dart';
+import 'package:intern_task/model/cart_model.dart';
 
 
 class Cart with ChangeNotifier {
-  int count = 0;
   Map<String, CartItem> _items = {};
+
   Map<String, CartItem> get items {
     return {..._items};
   }
@@ -23,8 +23,10 @@ class Cart with ChangeNotifier {
               quantity: existingCartItem.quantity + 1,
               price: existingCartItem.price,
               imageName: imageName
-              ));
-    } else {
+          )
+      );
+    } 
+    else {
       _items.putIfAbsent(
           pdtid,
           () => CartItem(
@@ -40,6 +42,7 @@ class Cart with ChangeNotifier {
 
   void removeItem(String id) {
     _items.remove(id);
+    
     notifyListeners();
   }
 
@@ -66,23 +69,22 @@ class Cart with ChangeNotifier {
     _items.forEach((key, cartItem) {
       total += cartItem.price * cartItem.quantity;
     });
+    
     return total;
   }
+  int get totalCartCount {
+    int totalCount = 0;
+    _items.forEach((key, cartItem) {
+      totalCount += cartItem.quantity ;
+    });
+    return totalCount;
+  }
 
-addCount(){
-  count++;
-  notifyListeners();
-}
-subCount(String id){
-  if(_items[id]!.quantity > 1){
-    count--;
-  notifyListeners();
-  }
-  
-}
+
+
  
-  void clear() {
-    _items = {};
-    notifyListeners();
-  }
+  // void clear() {
+  //   _items = {};
+  //   notifyListeners();
+  // }
 }

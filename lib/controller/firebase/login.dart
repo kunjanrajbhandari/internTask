@@ -37,16 +37,14 @@ class LoginRiderWithFirebase {
           FirebaseFirestore.instance.collection("users").doc(userCredential.user!.uid).get().then((value) {
             //applying condition that user value in firestore database is not null
             if(value.data() != null){
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainScreen()));
-              //Get.off(()=> MainScreen());
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MainScreen()),(Route<dynamic> route) => false,);
+              
               Fluttertoast.showToast(msg: "successfully logged-in now", backgroundColor:  Colors.green, textColor: Colors.white);
-              //Get.snackbar('Succes', "successfully logged-in now", backgroundColor: Colors.green.withOpacity(0.7), colorText: Colors.white);
            }
            else{
              Navigator.pop(context);
               FirebaseAuth.instance.signOut();   
               Fluttertoast.showToast(msg: "No Record Exist For This User", backgroundColor:  Colors.green, textColor: Colors.white);           
-              //Get.snackbar("title", "No Record Exist For This User", colorText: Colors.white, backgroundColor: Colors.red.withOpacity(0.7));
             }
           }
            
@@ -55,7 +53,6 @@ class LoginRiderWithFirebase {
         else{
           Navigator.pop(context);
           Fluttertoast.showToast(msg: "Could not be Signed-in", backgroundColor:  Colors.green, textColor: Colors.white);           
-          //Get.snackbar("Error", "Could not be Signed-in", colorText: Colors.white, backgroundColor: Colors.red.withOpacity(0.7));
           
         }   
       } 

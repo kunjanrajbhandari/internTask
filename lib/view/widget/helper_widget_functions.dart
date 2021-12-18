@@ -12,8 +12,3 @@ bool checkStock(int value){
     return false;
   }
 }
-// int getPrice(String price){
-//   String stPrice = int.parse( price.substring(1));
-//   // int price = int.parse(stPrice);
-//   // return price;
-// }

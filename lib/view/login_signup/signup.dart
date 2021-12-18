@@ -23,21 +23,26 @@ class _SignupState extends State<Signup> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             
-             const Image(
-              height: 350.0,
-              width: 350.0,
-              image: AssetImage(
-                'assets/images/logo.png'
-              )
+              const Center(
+                child: Image(
+                height: 350.0,
+                width: 350.0,
+                image: AssetImage(
+                  'assets/images/logo.png'
+                )
             ),
+              ),
             const SizedBox(height: 1.0,),
-            const Text("Register as a Rider",
-             style: TextStyle(
-               fontSize: 24,
-               fontFamily: "Brand Bold"
-            ),),
+            const Padding(
+              padding:  EdgeInsets.all(8.0),
+              child:  Text("Create Account",
+               style: TextStyle(
+                 fontSize: 24,fontWeight: FontWeight.bold
+              ),),
+            ),
              const SizedBox(height: 1.0,),
       
              Form(

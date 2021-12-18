@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/controller/provider/add_to_cart.dart';
+import 'package:intern_task/controller/provider/cart_provider.dart';
+import 'package:intern_task/view/checkout.dart';
 import 'package:intern_task/view/widget/ptd.dart';
 import 'package:provider/provider.dart';
 
@@ -11,17 +12,15 @@ class CartScreen extends StatelessWidget {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'My Cart',
-          
-        ),
+        title: const Text('My Cart',),
       ),
-      body: Column(
-        children: <Widget>[
+      body:cart.items.isNotEmpty? Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Expanded(
             child: ListView.builder(
                 itemCount: cart.items.length,
-                itemBuilder: (ctx, i) => CartPdt(
+                itemBuilder: (context, i) => CartPdt(
                     cart.items.values.toList()[i].id,
                     cart.items.keys.toList()[i],
                     cart.items.values.toList()[i].price,
@@ -29,20 +28,34 @@ class CartScreen extends StatelessWidget {
                     cart.items.values.toList()[i].name,
                     cart.items.values.toList()[i].imageName
                 )
+              )
               ),
-          ),
-          CheckoutButton(
-            cart: cart,
-          ),
-          // FlatButton(
-          //     onPressed: () {
-          //     },
-          //     child: Text(
-          //       'Checkout',
-          //       style: TextStyle(color: Colors.blue, fontSize: 20),
-          //     ))
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom:18.0),
+                    child: RichText(
+                    text: TextSpan(
+                      text: 'Total: Rs.',
+                      style: TextStyle(fontSize: 13.0,color: Colors.red ),
+
+                      children: [
+                        TextSpan(
+                          text: '${cart.totalAmount}',
+                          style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                    )
+                ),
+                  ),
+                  CheckoutButton(cart: cart,),
+                ],
+              )
+          
         ],
-      ),
+      ): Center(child: Text("Empty cart...",style: TextStyle(color: Colors.black.withOpacity(0.7)),)),
     );
   }
 }
@@ -58,18 +71,24 @@ class CheckoutButton extends StatefulWidget {
 class _CheckoutButtonState extends State<CheckoutButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-          
-          child: Text('Checkout'),
-          onPressed: (){},
-          // onPressed:widget.cart.totalAmount <= 0
-          //     ? null
-          //     : () async {
-          //         await Provider.of<Orders>(context, listen: false).addOrder(
-          //             widget.cart.items.values.toList(), widget.cart.totalAmount);
-          //         widget.cart.clear();
-          //       },
-       
+    return Padding(
+      padding: const EdgeInsets.only(bottom:18.0),
+      child: ElevatedButton(
+            
+            child: Text('Checkout'),
+            onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CheckOut()));
+            },
+            
+            // onPressed:widget.cart.totalAmount <= 0
+            //     ? null
+            //     : () async {
+            //         await Provider.of<Orders>(context, listen: false).addOrder(
+            //             widget.cart.items.values.toList(), widget.cart.totalAmount);
+            //         widget.cart.clear();
+            //       },
+         
+      ),
     );
   }
 }

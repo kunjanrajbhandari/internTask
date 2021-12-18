@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:intern_task/controller/product.dart';
+import 'package:intern_task/controller/provider/product.dart';
+import 'package:intern_task/controller/unix_to_normal_time.dart';
+import 'package:intern_task/view/checkout.dart';
+import 'package:intern_task/view/login_signup/login.dart';
 import 'package:intern_task/view/main_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'controller/provider/add_to_cart.dart';
+import 'controller/provider/cart_provider.dart';
 
 void main()async {
    WidgetsFlutterBinding.ensureInitialized();
@@ -28,11 +31,16 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) {
             return Cart();
           },
+        ),
+        ChangeNotifierProvider<TimeStampConverter>(
+          create: (BuildContext context) {
+            return TimeStampConverter();
+          },
         )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MainScreen(),
+        home: Login(),
       ),
     );
       

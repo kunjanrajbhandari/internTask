@@ -19,21 +19,28 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 35.0,),
-             Image(
-              height: 350.0,
-              width: 350.0,
-              image: AssetImage(
-                'assets/images/logo.png'
-              )
+             Center(
+               child: Image(
+                height: 350.0,
+                width: 350.0,
+                image: AssetImage(
+                  'assets/images/logo.png'
+                )
             ),
+             ),
             SizedBox(height: 1.0,),
-            Text("Login as a Rider",
-             style: TextStyle(
-               fontSize: 24,
-               fontFamily: "Brand Bold"
-            ),),
+            Padding(
+              padding: const EdgeInsets.only(top:6.0,left: 18.0, bottom: 6.0),
+              child: Text("Hey There,\nWellcome Back",
+               style: TextStyle(
+                 fontSize: 24,
+                 fontWeight: FontWeight.w600
+              ),),
+            ),
+             
              SizedBox(height: 1.0,),
       
              Form(

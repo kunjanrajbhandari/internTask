@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern_task/controller/provider/add_to_cart.dart';
+import 'package:intern_task/controller/provider/cart_provider.dart';
 import 'package:intern_task/view/widget/helper_widget_functions.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class CartPdt extends StatelessWidget {
         Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
       child: Card(
-        child: Container(
+        child: SizedBox(
           height: 77,
           child: Padding(
             padding: const EdgeInsets.only(left:8.0),
@@ -35,31 +35,42 @@ class CartPdt extends StatelessWidget {
                   children: [
                     CircleAvatar(
                         child: FittedBox(child: getProductImage(imageName,50),
-                      ),),
+                      fit: BoxFit.fitWidth),),
                       Text(name,style:TextStyle(fontSize: 17.0, fontWeight: FontWeight.w500),),
                       SizedBox(
-                        width: 120.0,
+                        width: 130.0,
                         child:Row(
                           children: [
                             IconButton(onPressed: (){
-                              Provider.of<Cart>(context,listen: false).addCount();
                               Provider.of<Cart>(context,listen: false).addItem(productId, name, 20, imageName);
                             }, 
                             icon: Icon(Icons.add),iconSize: 19.0,),
                             Text('$quantity ',style: TextStyle(fontSize: 19.0,fontWeight: FontWeight.bold),),
 
                             IconButton(onPressed: (){
-                              Provider.of<Cart>(context,listen: false).subCount(productId);
                               Provider.of<Cart>(context,listen: false).removeSingleItem(productId);
                             }, icon: Icon(Icons.remove),iconSize: 19.0,),
                           ],
                         )
-                      )
-                      
+                      ) 
                   ],
                 ),
                 SizedBox(height: 4.0,),
-                Text('Total: \$${(price * quantity)}',style: TextStyle(fontWeight: FontWeight.bold),),
+                RichText(
+                  text: TextSpan(
+                    text: 'Total: Rs.',
+                    style: TextStyle(fontSize: 13.0,color: Colors.red ),
+
+                    children: [
+                      TextSpan(
+                        text: '${(price * quantity)}',
+                        style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                  )
+                ),
+                              
+                //Text('Total: \$${(price * quantity)}',style: TextStyle(fontWeight: FontWeight.bold),),
               ],
             ),
           ),
