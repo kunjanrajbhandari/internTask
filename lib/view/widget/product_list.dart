@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:intern_task/controller/provider/product.dart';
 import 'package:intern_task/controller/provider/cart_provider.dart';
 import 'package:intern_task/view/single.dart';
-import 'package:intern_task/view/widget/cart_logo.dart';
 import 'package:intern_task/view/widget/helper_widget_functions.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +39,7 @@ class _ProductListState extends State<ProductList> {
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => SinglePage(id: provider.productList[index].id,
                           productName: provider.productList[index].productName,
                           imageName: provider.productList[index].imageName,
-                          price: provider.productList[index].price,
+                          price: convertPrice(provider.productList[index].price!),
                           stock: provider.productList[index].stock,
                           createdDate: provider.productList[index].date
                         )));
@@ -64,12 +63,12 @@ class _ProductListState extends State<ProductList> {
 
                               RichText(
                                 text: TextSpan(
-                                  text: 'Rs.',
+                                  text: 'Nrs.',
                                   style: TextStyle(fontSize: 15.0,color: Colors.red ),
 
                                   children: [
                                     TextSpan(
-                                      text: '${provider.productList[index].price}',
+                                      text: '${convertPrice(provider.productList[index].price!)}',
                                       style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold, color: Colors.red),
                                     )
                                   ]
@@ -95,7 +94,7 @@ class _ProductListState extends State<ProductList> {
                                         print(provider.productList[index].price!);
                                         print(provider.productList[index].imageName!);
 
-                                      Provider.of<Cart>(context,listen: false).addItem(provider.productList[index].id.toString() , provider.productList[index].productName! , provider.productList[index].price! , provider.productList[index].imageName! );
+                                      Provider.of<Cart>(context,listen: false).addItem(provider.productList[index].id.toString() , provider.productList[index].productName! , convertPrice(provider.productList[index].price!), provider.productList[index].imageName! );
                                     }, 
                                     child: Image(image: AssetImage("assets/images/cart0.png"),height: 24,),
                                     )

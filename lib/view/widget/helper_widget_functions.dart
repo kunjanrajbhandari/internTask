@@ -12,3 +12,11 @@ bool checkStock(int value){
     return false;
   }
 }
+
+double convertPrice(String value){
+  String convertToInt = value.substring(1);
+  int priceInt = int.parse(convertToInt);
+  double priceDouble = priceInt.toDouble();
+  double nepalprice = priceDouble*120;
+  return nepalprice;
+}
