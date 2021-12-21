@@ -33,6 +33,8 @@ class SingupRiderWithFirebase{
           Fluttertoast.showToast(msg:errMsg.toString(), backgroundColor:  Colors.red, textColor: Colors.white);
           //Get.snackbar("Error Msg", errMsg.toString());
         });
+        User user = userCredential.user!;
+        user.updateDisplayName(name);
 
         if(userCredential.user != null){  
           //storing the value of user in document of user_id ie.(doc(uid)) for the instance db created in 1st line of this function         

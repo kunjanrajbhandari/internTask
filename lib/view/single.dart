@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:intern_task/controller/firebase/checkout.dart';
 import 'package:intern_task/controller/provider/cart_provider.dart';
 import 'package:intern_task/controller/unix_to_normal_time.dart';
+import 'package:intern_task/view/checkout.dart';
 import 'package:intern_task/view/widget/custom_appbar.dart';
 import 'package:intern_task/view/widget/dummy_data.dart';
 import 'package:intern_task/view/widget/helper_widget_functions.dart';
@@ -89,7 +91,10 @@ class _SinglePageState extends State<SinglePage> {
                                   primary: Colors.orange,
                                 padding: EdgeInsets.all(15),
                                 ),
-                                onPressed: (){}, child: Container(width:99.0,height: 22,child: Center(child: Text("Buy Now", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),)))
+                                onPressed: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  CheckOut()));
+
+                                }, child: Container(width:99.0,height: 22,child: Center(child: Text("Buy Now", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),)))
                               ),
                               SizedBox(width: 28.0,),
                               ElevatedButton(

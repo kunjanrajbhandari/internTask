@@ -5,6 +5,7 @@ import 'package:intern_task/controller/unix_to_normal_time.dart';
 import 'package:intern_task/view/checkout.dart';
 import 'package:intern_task/view/login_signup/login.dart';
 import 'package:intern_task/view/main_screen.dart';
+import 'package:intern_task/view/splash.dart';
 import 'package:provider/provider.dart';
 
 import 'controller/provider/cart_provider.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        home: SplashScreen(),
       ),
     );
       

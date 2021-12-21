@@ -74,20 +74,10 @@ class _CheckoutButtonState extends State<CheckoutButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom:18.0),
       child: ElevatedButton(
-            
-            child: Text('Checkout'),
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CheckOut()));
-            },
-            
-            // onPressed:widget.cart.totalAmount <= 0
-            //     ? null
-            //     : () async {
-            //         await Provider.of<Orders>(context, listen: false).addOrder(
-            //             widget.cart.items.values.toList(), widget.cart.totalAmount);
-            //         widget.cart.clear();
-            //       },
-         
+        child: Text('Checkout'),
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CheckOut()));
+        },         
       ),
     );
   }

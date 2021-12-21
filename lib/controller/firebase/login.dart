@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intern_task/view/main_screen.dart';
+import 'package:intern_task/view/splash.dart';
 import 'package:intern_task/view/widget/progress_dialog.dart';
 
 class LoginRiderWithFirebase {
@@ -29,32 +30,8 @@ class LoginRiderWithFirebase {
           Navigator.pop(context);
           Fluttertoast.showToast(msg: errMsg.toString(), backgroundColor:  Colors.red, textColor: Colors.white);
         });
-
-        //checking user is null or not 
-        if(userCredential.user != null){    
-          //checking user firebase firestore database value is null or not.
-             
-          FirebaseFirestore.instance.collection("users").doc(userCredential.user!.uid).get().then((value) {
-            //applying condition that user value in firestore database is not null
-            if(value.data() != null){
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MainScreen()),(Route<dynamic> route) => false,);
-              
-              Fluttertoast.showToast(msg: "successfully logged-in now", backgroundColor:  Colors.green, textColor: Colors.white);
-           }
-           else{
-             Navigator.pop(context);
-              FirebaseAuth.instance.signOut();   
-              Fluttertoast.showToast(msg: "No Record Exist For This User", backgroundColor:  Colors.green, textColor: Colors.white);           
-            }
-          }
-           
-          );
-        }  
-        else{
-          Navigator.pop(context);
-          Fluttertoast.showToast(msg: "Could not be Signed-in", backgroundColor:  Colors.green, textColor: Colors.white);           
+         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const SplashScreen()),(Route<dynamic> route) => false,);
           
-        }   
       } 
        catch (e) {
         print(e);

@@ -122,18 +122,6 @@ class _CheckOutState extends State<CheckOut> with InputValidationMixin{
                           }
                         )
                       ),
-                      // TextFormField(
-                      //   decoration: InputDecoration(
-                      //     labelText: "Current Date",
-                      //   ),
-                      //   //maxLength: 6,
-                      //   validator: (password) {
-                      //     // if(password == '') return 'please enter your password';
-                      //     // if (isPasswordValid(password!)) return null;
-                      //     // else return 'Enter a valid password';
-                      //   },
-                      // ),
-                      // Image(image: NetworkImage("sdfsddf"),)
                       const SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () {
@@ -142,11 +130,6 @@ class _CheckOutState extends State<CheckOut> with InputValidationMixin{
                               Checkout checkout = Checkout();
                               DateTime date = Provider.of<TimeStampConverter>(context,listen: false).dateTime!;
                               checkout.sendData(name!, phoneNumber!, billingAddress!, deliveryAddress!, date);
-                              // print(name);
-                              // print(phoneNumber);
-                              // print(billingAddress);
-                              // print(deliveryAddress);
-                              // print(Provider.of<TimeStampConverter>(context,listen: false).dateTime);
                               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MainScreen()),(Route<dynamic> route) => false,);
                             }
                           },

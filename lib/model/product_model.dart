@@ -5,7 +5,7 @@ class ProductModel{
   String? price;
   int? stock;
   int? date;
-  List<dynamic>? category;
+  String category;
 
   ProductModel({required this.id, required this.productName, required this.imageName, required this.price, required this.stock, required this.category, required this.date});
 }
