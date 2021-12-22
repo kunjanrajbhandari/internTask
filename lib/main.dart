@@ -40,6 +40,11 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        
+        theme: ThemeData(
+          primaryColor: Colors.blue,
+          hoverColor: Colors.orange
+        ),
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

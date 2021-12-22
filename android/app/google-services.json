@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1045075267772",
+    "project_id": "intern-task-b6b0f",
+    "storage_bucket": "intern-task-b6b0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045075267772:android:32fab635df72117b4cc0b9",
+        "android_client_info": {
+          "package_name": "com.example.internTask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045075267772-b1ne42jffkjt6s66ca8u2jr6buudm617.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZWEjq-FbLq4tAR5LiV8qlgQRThiKzCCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045075267772-b1ne42jffkjt6s66ca8u2jr6buudm617.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1045075267772-fejc37nll6iau27u8hvak2m74q5p5vjf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.internTask"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
